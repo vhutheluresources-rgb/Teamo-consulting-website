@@ -73,6 +73,7 @@
 
         section { padding:100px 5%; max-width:1400px; margin:0 auto; }
         h2 { font-size:3rem; text-align:center; margin-bottom:60px; color:var(--charcoal); }
+        h3 { font-size:2.2rem; margin-bottom:30px; text-align:center; }
         .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:40px; }
         .card { background:var(--white); padding:40px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.08); text-align:center; }
         .card:hover { transform:translateY(-10px); box-shadow:0 20px 40px rgba(0,0,0,0.12); }
@@ -81,6 +82,17 @@
 
         .founder { text-align:center; background:var(--softgrey); padding:80px 20px; }
         .founder img { width:300px; height:300px; border-radius:50%; object-fit:cover; border:8px solid var(--white); box-shadow:0 10px 30px rgba(0,0,0,0.1); margin-bottom:30px; }
+
+        .mission-vision, .why-choose, .brand-promise, .motto {
+            background:var(--section-bg-light);
+            padding:80px 5%;
+            color:var(--section-text-light);
+        }
+        [data-theme="dark"] .mission-vision, [data-theme="dark"] .why-choose,
+        [data-theme="dark"] .brand-promise, [data-theme="dark"] .motto {
+            background:var(--section-bg-dark);
+            color:var(--section-text-dark);
+        }
 
         .testimonials, .contact {
             background:var(--section-bg-light);
@@ -154,6 +166,15 @@
             color: #00FFFF !important;
         }
 
+        .highlight-list {
+            max-width:900px;
+            margin:0 auto 40px;
+            font-size:1.1rem;
+            line-height:1.8;
+        }
+        .highlight-list li { margin-bottom:12px; }
+        .highlight-list strong { color:var(--teal); }
+
         /* Booking Form Container */
         .booking-form-container {
             max-width: 700px;
@@ -167,41 +188,268 @@
         [data-theme="dark"] .booking-form-container {
             background: rgba(255,255,255,0.05);
         }
-
-        .success-message {
-            text-align: center;
-            padding: 40px;
-            background: rgba(13, 148, 136, 0.15);
-            border-radius: 15px;
-            margin: 40px auto;
-            max-width: 700px;
-            display: none;
-        }
-        .success-message.show {
-            display: block;
-        }
     </style>
 </head>
 <body data-theme="light">
 
-<!-- ... Your existing header, hero, about, founder, services, programmes, testimonials sections remain unchanged ... -->
+<header>
+    <nav>
+        <img src="teamo%20trans%20logo.png" alt="Teamo Consulting Logo" class="logo-img">
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#founder">Founder</a>
+            <a href="#mission">Mission & Vision</a>
+            <a href="#services">Services</a>
+            <a href="#programmes">Programmes</a>
+            <a href="#why">Why Teamo</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+                <i class="fas fa-sun" id="sunIcon"></i>
+                <i class="fas fa-moon" id="moonIcon" style="display:none;"></i>
+            </button>
+        </div>
+        <i class="fas fa-bars mobile-menu" onclick="document.getElementById('navLinks').classList.toggle('active')"></i>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <span class="badge">100% Black Woman-Owned</span>
+    <h1>Teamo Consulting</h1>
+    <p class="tagline">Grow. Evolve. Lead.</p>
+    <p style="max-width:900px; margin:30px auto; font-size:1.2rem;">
+        Developing People. Elevating Organisations. Shaping the Future.
+    </p>
+    <div>
+        <a href="#contact" class="btn">Book a Consultation</a>
+        <a href="https://wa.me/27738884764?text=Hi%20Teamo%20Consulting!%20I'd%20like%20to%20learn%20more." class="btn btn-outline">Chat on WhatsApp</a>
+    </div>
+</section>
+
+<section id="about">
+    <h2>About Teamo Consulting</h2>
+    <p style="text-align:center; max-width:900px; margin:0 auto 40px;">
+        Teamo Consulting is a <strong>100% Black woman-owned</strong> talent development and workforce transformation consultancy.
+    </p>
+    <p style="text-align:center; max-width:900px; margin:0 auto 40px;">
+        We specialise in people development, coaching, training, HR advisory, internships, learnership management, and youth work-readiness programmes.
+    </p>
+    <p style="text-align:center; max-width:900px; margin:0 auto 60px; font-style:italic;">
+        Our purpose is to develop skilled, confident, employable individuals and to help organisations build strong, agile, high-performing teams.
+    </p>
+    <div class="grid">
+        <img src="https://thumbs.dreamstime.com/b/diverse-college-students-attending-business-leadership-workshop-johannesburg-south-africa-february-267622182.jpg" alt="Diverse team in training workshop">
+        <img src="https://images.squarespace-cdn.com/content/v1/5994a30fe4fcb5d90b6fbeab/1514496579627-DFV6H72QT63D308AOQRH/image-asset.jpeg" alt="Corporate training session">
+        <img src="https://www.shutterstock.com/image-photo/johannesburg-south-africa-november-19-260nw-2193243661.jpg" alt="HR strategy meeting">
+    </div>
+</section>
+
+<section class="founder" id="founder">
+    <h2>Meet the Founder</h2>
+    <img src="profile" alt="Ms Snenhlanhla Nene">
+    <h3>Ms Snenhlanhla Nene</h3>
+    <p><strong>People Developer | Talent Strategist | Workforce Transformation Consultant</strong></p>
+    <p style="max-width:800px; margin:20px auto;">
+        Warm, dynamic, and deeply committed to unlocking human potential, Ms Snenhlanhla Nene is a passionate specialist in people development and workforce transformation. Her journey is rooted in a genuine love for seeing individuals rise into confident, capable leaders.
+    </p>
+    <p style="max-width:800px; margin:20px auto;">
+        With expertise in talent development, mentoring, coaching, organisational culture, behavioural training, customer experience, and youth preparedness, she prepares young professionals for modern workspaces and builds strong leadership pipelines.
+    </p>
+    <p style="max-width:800px; margin:20px auto; font-style:italic;">
+        "When people grow, organisations evolve and leaders emerge."
+    </p>
+</section>
+
+<!-- NEW: MISSION & VISION -->
+<section id="mission" class="mission-vision">
+    <h2>Our Mission & Vision</h2>
+    <div style="max-width:900px; margin:0 auto 60px; text-align:center;">
+        <h3>Our Mission</h3>
+        <p>To empower people with the skills, confidence and clarity they need to succeed, while helping organisations build agile, high-performing teams that grow, evolve and lead with purpose.</p>
+    </div>
+    <div style="max-width:900px; margin:0 auto 60px; text-align:center;">
+        <h3>Our Vision</h3>
+        <p>To be a leading force in people development and workforce transformation across the globe – shaping future leaders, strengthening businesses and building a workforce that is prepared, capable, connected and future-fit.</p>
+    </div>
+</section>
+
+<!-- UPDATED & EXPANDED SERVICES SECTION -->
+<section id="services">
+    <h2>Our Core Consulting Services</h2>
+    <p style="text-align:center; max-width:900px; margin:0 auto 40px;">
+        High-Impact People & Workforce Development Solutions<br>
+        At Teamo Consulting, we partner with organisations to create real change — the kind that builds capability, confidence, and measurable business value.
+    </p>
+    <div class="grid">
+        <div class="card"><i class="fas fa-user-tie"></i><h3>Coaching & Mentorship</h3><p>Building clarity, confidence and consistent high performance.</p></div>
+        <div class="card"><i class="fas fa-cogs"></i><h3>Succession Planning</h3><p>Identifying, grooming and preparing future leaders to ensure organisational continuity.</p></div>
+        <div class="card"><i class="fas fa-briefcase"></i><h3>HR Strategy Development</h3><p>Designing agile, people-first strategies that strengthen culture and performance.</p></div>
+        <div class="card"><i class="fas fa-search"></i><h3>Training Needs Analysis</h3><p>Pinpointing skills gaps and designing targeted, high-impact interventions.</p></div>
+        <div class="card"><i class="fas fa-chart-line"></i><h3>Leadership Development</h3><p>Equipping leaders with modern, practical tools for influence, collaboration and team engagement.</p></div>
+        <div class="card"><i class="fas fa-graduation-cap"></i><h3>Career Guidance & Work Readiness</h3><p>Supporting youth and job seekers to enter the workplace prepared, polished and professional.</p></div>
+        <div class="card"><i class="fas fa-exchange-alt"></i><h3>Change Management</h3><p>Guiding teams through shifts with clarity, alignment and minimal resistance.</p></div>
+        <div class="card"><i class="fas fa-users"></i><h3>Diversity, Inclusion & Belonging</h3><p>Strengthening collaboration, empathy, and teamwork across cultures, generations and backgrounds.</p></div>
+        <div class="card"><i class="fas fa-chart-bar"></i><h3>HR & Workforce Analytics</h3><p>Turning data into insights, and insights into strategic action.</p></div>
+        <div class="card"><i class="fas fa-headset"></i><h3>Customer Service & Behaviour Training</h3><p>Enhancing emotional intelligence, service culture, and customer experience.</p></div>
+        <div class="card"><i class="fas fa-user-plus"></i><h3>Recruitment Strategy & Talent Attraction</h3><p>Helping organisations design hiring processes that attract and retain the right talent.</p></div>
+        <div class="card"><i class="fas fa-comment-dots"></i><h3>Communication Mastery</h3><p>Improving communication, confidence, presentation and interpersonal effectiveness.</p></div>
+        <div class="card"><i class="fas fa-file-alt"></i><h3>CV Writing & Interview Coaching</h3><p>Empowering job seekers to communicate their value and win opportunities.</p></div>
+    </div>
+
+    <div style="max-width:900px; margin:60px auto 0; text-align:center;">
+        <h3>Specialised Expertise: Internships, Learnerships & Talent Pipelines</h3>
+        <p>Teamo Consulting provides end-to-end programme design, implementation and management, including:</p>
+        <ul style="list-style:none; padding:0; max-width:600px; margin:30px auto; text-align:left;">
+            <li>✔ Full programme setup & onboarding</li>
+            <li>✔ Training schedules & compliance</li>
+            <li>✔ Stakeholder coordination</li>
+            <li>✔ Work readiness preparation</li>
+            <li>✔ Coaching, mentoring & performance tracking</li>
+            <li>✔ Talent identification & retention strategies</li>
+        </ul>
+        <p>We build structured pathways that organisations trust and young professionals thrive in.</p>
+    </div>
+</section>
+
+<section id="programmes" style="background:var(--softgrey);">
+    <h2>Specialised Programmes</h2>
+    <p style="text-align:center; max-width:900px; margin:0 auto 60px;">
+        End-to-end internship, learnership and talent pipeline management, including programme setup, onboarding, compliance, mentoring and retention – aligned with B-BBEE, SETA and QCTO.
+    </p>
+    <div class="grid">
+        <div class="card">
+            <img src="https://youthvillage.co.za/wp-content/uploads/2025/10/Left-to-Right-CATHSSETA-CEO-Mr-Thibela-Deputy-Minister-DHET-Dr-Gondwe-Graduate-Miss-Kgope-McDonalds-SA-CPO-Dr-Masia-CATHSSETA-Board-Member-Mr-Mhlanga-780x470.jpg" alt="Youth graduation ceremony">
+            <h3>Youth Work-Readiness Programmes</h3>
+            <p>Transformative bootcamps for workplace readiness.</p>
+        </div>
+        <div class="card">
+            <img src="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3779319785755347322" alt="Learnership graduates">
+            <h3>Internship & Learnership Management</h3>
+            <p>Full administration, compliance and support.</p>
+        </div>
+        <div class="card">
+            <img src="https://images.caxton.co.za/wp-content/uploads/sites/107/2025/10/graduation-copy-780x470.jpg" alt="Talent pipeline celebration">
+            <h3>Talent Pipeline Development</h3>
+            <p>Structured pathways for sustainable growth.</p>
+        </div>
+    </div>
+</section>
+
+<!-- NEW: WHY CHOOSE TEAMO -->
+<section id="why" class="why-choose">
+    <h2>Why Organisations Choose Teamo Consulting</h2>
+    <p style="text-align:center; max-width:900px; margin:0 auto 40px;">
+        Clients choose Teamo Consulting and Ms Nene because of her rare blend of humanity, strategy, passion and professionalism. She brings warmth to corporate challenges and structure to people development.
+    </p>
+    <div class="highlight-list">
+        <ul>
+            <li><strong>Stronger, more engaged teams</strong></li>
+            <li><strong>Lower turnover & improved retention</strong></li>
+            <li><strong>Future leaders identified and groomed</strong></li>
+            <li><strong>Workforce pipelines that sustain growth</strong></li>
+            <li><strong>Improved service culture</strong></li>
+            <li><strong>Youth prepared for real work environments</strong></li>
+            <li><strong>Confident communication & collaboration</strong></li>
+            <li><strong>Modern skills that meet future-of-work demands</strong></li>
+        </ul>
+    </div>
+    <p style="text-align:center; font-style:italic; margin-top:40px;">
+        Teamo Consulting doesn’t just train — we transform, elevate and prepare organisations for the future.
+    </p>
+</section>
+
+<!-- NEW: BRAND PROMISE & MOTTO -->
+<section id="promise" class="brand-promise">
+    <h2>Our Brand Promise</h2>
+    <p style="text-align:center; max-width:900px; margin:0 auto 40px;">
+        We develop people who are employable, confident, future-ready and impactful, while supporting organisations to build strong, sustainable talent pipelines.
+    </p>
+
+    <h3 style="text-align:center; margin:60px 0 30px;">Our Motto: Grow. Evolve. Lead.</h3>
+    <div style="max-width:900px; margin:0 auto; text-align:center;">
+        <p><strong>Grow.</strong><br>Strengthen your foundation. Build your confidence. Unlock your potential.</p>
+        <p style="margin:30px 0;"><strong>Evolve.</strong><br>Transform your mindset. Elevate your skills. Embrace the future.</p>
+        <p><strong>Lead.</strong><br>Step into excellence. Influence others. Shape the world.</p>
+    </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-grid" id="testimonialsList">
+        <p style="grid-column:1/-1; text-align:center; opacity:0.7;">No testimonials yet. Be the first to share your experience!</p>
+    </div>
+
+    <div class="testimonial-form">
+        <h3 style="text-align:center; margin-bottom:30px;">Share Your Experience with Teamo Consulting</h3>
+        <div class="form-group">
+            <label>Name *</label>
+            <input type="text" id="name" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+            <label>Job Title / Role *</label>
+            <input type="text" id="title" placeholder="e.g. HR Manager" required>
+        </div>
+        <div class="form-group">
+            <label>Company or Programme *</label>
+            <input type="text" id="company" placeholder="e.g. Nedbank or 2024 Learnership" required>
+        </div>
+        <div class="form-group">
+            <label>Your Testimonial *</label>
+            <textarea id="message" rows="4" placeholder="Tell us how Teamo helped you..." required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Rate Our Service *</label>
+            <div class="rating" id="rating">
+                <span onclick="setRating(1)">★</span>
+                <span onclick="setRating(2)">★</span>
+                <span onclick="setRating(3)">★</span>
+                <span onclick="setRating(4)">★</span>
+                <span onclick="setRating(5)">★</span>
+            </div>
+        </div>
+        <button onclick="submitTestimonial()">Submit Testimonial</button>
+    </div>
+</section>
 
 <section class="contact" id="contact">
     <h2>Let’s Transform Together</h2>
     <div class="contact-grid">
-        <!-- ... your existing contact boxes remain unchanged ... -->
+        <div class="contact-box">
+            <a href="tel:+27738884764" style="text-decoration:none; color:inherit;">
+                <i class="fas fa-phone contact-icon"></i>
+                <p><strong>Call Us</strong><br>073 888 4764</p>
+            </a>
+        </div>
+        <div class="contact-box">
+            <a href="https://wa.me/27738884764?text=Hi%20Teamo%20Consulting!%20I'd%20like%20to%20book%20a%20consultation." style="text-decoration:none; color:inherit;">
+                <i class="fab fa-whatsapp contact-icon"></i>
+                <p><strong>WhatsApp</strong><br>073 888 4764</p>
+            </a>
+        </div>
+        <div class="contact-box">
+            <a href="mailto:info@teamoconsulting.co.za" style="text-decoration:none; color:inherit;">
+                <i class="fas fa-envelope contact-icon"></i>
+                <p><strong>Email</strong><br>info@teamoconsulting.co.za</p>
+            </a>
+        </div>
+        <div class="contact-box">
+            <a href="https://www.google.com/maps/search/?api=1&query=Midrand,Gauteng,South+Africa" target="_blank" style="text-decoration:none; color:inherit;">
+                <i class="fas fa-location-dot contact-icon"></i>
+                <p><strong>Location</strong><br>Midrand, Gauteng<br>South Africa</p>
+            </a>
+        </div>
     </div>
 
     <div style="text-align:center; margin-top:40px;">
         <a href="https://wa.me/27738884764?text=Hi%20Teamo%20Consulting!%20I'd%20like%20to%20book%20a%20consultation." class="btn">Book a Free Consultation</a>
     </div>
 
-    <!-- BOOKING FORM -->
-    <div class="booking-form-container" id="bookingFormContainer">
+    <!-- Booking Form Container -->
+    <div class="booking-form-container">
         <h3 style="text-align:center; margin-bottom: 30px;">Request Your Free Consultation</h3>
 
-        <form id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
-            <!-- Replace YOUR_FORM_ID_HERE with your real Formspree ID -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
             <input type="hidden" name="_subject" value="New Consultation Booking - Teamo Consulting">
 
             <div class="form-group">
@@ -246,22 +494,10 @@
             </div>
 
             <div style="text-align:center; margin-top: 30px;">
-                <button type="button" onclick="confirmBooking()">Submit Booking Request</button>
+                <button type="submit">Submit Booking Request</button>
             </div>
         </form>
     </div>
-
-    <!-- SUCCESS MESSAGE (hidden by default) -->
-    <div id="successMessage" class="success-message">
-        <h3 style="color: var(--teal);">Success!</h3>
-        <p>Your booking request has been sent successfully!<br>
-            We will contact you shortly to confirm your preferred time.</p>
-        <button onclick="document.getElementById('successMessage').classList.remove('show'); document.getElementById('bookingFormContainer').style.display='block';"
-                style="margin-top:20px; background:#666; color:white; padding:10px 25px; border:none; border-radius:30px; cursor:pointer;">
-            Close
-        </button>
-    </div>
-
 </section>
 
 <a href="https://wa.me/27738884764" class="whatsapp-float" target="_blank">
@@ -274,7 +510,7 @@
 </footer>
 
 <script>
-    // Dark/Light Mode Toggle (unchanged)
+    // Dark/Light Mode Toggle
     function toggleTheme() {
         const body = document.body;
         const current = body.getAttribute('data-theme');
@@ -290,36 +526,7 @@
         document.getElementById('moonIcon').style.display = 'inline';
     }
 
-    // === NEW BOOKING CONFIRMATION LOGIC ===
-    function confirmBooking() {
-        if (confirm("Are you sure you want to send this booking request?")) {
-            const form = document.getElementById('bookingForm');
-            const formData = new FormData(form);
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById('bookingFormContainer').style.display = 'none';
-                        document.getElementById('successMessage').classList.add('show');
-                        form.reset(); // Clear the form
-                    } else {
-                        alert("There was a problem sending your request. Please try again or contact us directly.");
-                    }
-                })
-                .catch(error => {
-                    alert("An error occurred. Please check your internet connection and try again.");
-                    console.error('Error:', error);
-                });
-        }
-    }
-
-    // Testimonial System (unchanged)
+    // Testimonial System
     let currentRating = 5;
     function setRating(r) {
         currentRating = r;
