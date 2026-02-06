@@ -20,7 +20,7 @@
 
     <style>
         :root {
-            --blue: #00FFFF;
+            --blue : #00FFFF;
             --teal: #0d9488;
             --charcoal: #2d3436;
             --lightgrey: #f8f9fa;
@@ -73,7 +73,6 @@
 
         section { padding:100px 5%; max-width:1400px; margin:0 auto; }
         h2 { font-size:3rem; text-align:center; margin-bottom:60px; color:var(--charcoal); }
-        h3 { font-size:2.2rem; margin-bottom:30px; text-align:center; }
         .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:40px; }
         .card { background:var(--white); padding:40px; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.08); text-align:center; }
         .card:hover { transform:translateY(-10px); box-shadow:0 20px 40px rgba(0,0,0,0.12); }
@@ -82,17 +81,6 @@
 
         .founder { text-align:center; background:var(--softgrey); padding:80px 20px; }
         .founder img { width:300px; height:300px; border-radius:50%; object-fit:cover; border:8px solid var(--white); box-shadow:0 10px 30px rgba(0,0,0,0.1); margin-bottom:30px; }
-
-        .mission-vision, .why-choose, .brand-promise, .motto {
-            background:var(--section-bg-light);
-            padding:80px 5%;
-            color:var(--section-text-light);
-        }
-        [data-theme="dark"] .mission-vision, [data-theme="dark"] .why-choose,
-        [data-theme="dark"] .brand-promise, [data-theme="dark"] .motto {
-            background:var(--section-bg-dark);
-            color:var(--section-text-dark);
-        }
 
         .testimonials, .contact {
             background:var(--section-bg-light);
@@ -118,21 +106,13 @@
 
         .form-group { margin-bottom:20px; }
         label { display:block; margin-bottom:8px; font-weight:500; }
-        input, textarea, select {
-            width:100%; padding:14px; border-radius:8px; border:none;
-            background:rgba(0,0,0,0.05); color:inherit; font-family:inherit;
-        }
-        [data-theme="dark"] input, [data-theme="dark"] textarea, [data-theme="dark"] select {
-            background:rgba(255,255,255,0.1);
-        }
+        input, textarea { width:100%; padding:14px; border-radius:8px; border:none; background:rgba(0,0,0,0.05); color:inherit; font-family:inherit; }
+        [data-theme="dark"] input, [data-theme="dark"] textarea { background:rgba(255,255,255,0.1); }
         input::placeholder, textarea::placeholder { color:#999; }
         .rating { display:flex; gap:8px; font-size:2.2rem; cursor:pointer; }
         .rating span { color:#ccc; }
         .rating span.active, .rating span:hover { color:#facc15; }
-        button {
-            background:var(--teal); color:white; padding:14px 30px; border:none;
-            border-radius:50px; cursor:pointer; font-weight:600; font-size:1.1rem;
-        }
+        button { background:var(--teal); color:white; padding:14px 30px; border:none; border-radius:50px; cursor:pointer; font-weight:600; font-size:1.1rem; }
 
         .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:40px; margin-bottom:60px; }
         .contact-box { background:rgba(0,0,0,0.05); padding:35px; border-radius:15px; text-align:center; transition:0.3s; }
@@ -165,29 +145,6 @@
         .hero h1 {
             color: #00FFFF !important;
         }
-
-        .highlight-list {
-            max-width:900px;
-            margin:0 auto 40px;
-            font-size:1.1rem;
-            line-height:1.8;
-        }
-        .highlight-list li { margin-bottom:12px; }
-        .highlight-list strong { color:var(--teal); }
-
-        /* Booking Form Container */
-        .booking-form-container {
-            max-width: 700px;
-            margin: 60px auto 0;
-            background: rgba(255,255,255,0.08);
-            padding: 40px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-        }
-        [data-theme="dark"] .booking-form-container {
-            background: rgba(255,255,255,0.05);
-        }
     </style>
 </head>
 <body data-theme="light">
@@ -199,10 +156,8 @@
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#founder">Founder</a>
-            <a href="#mission">Mission & Vision</a>
             <a href="#services">Services</a>
             <a href="#programmes">Programmes</a>
-            <a href="#why">Why Teamo</a>
             <a href="#testimonials">Testimonials</a>
             <a href="#contact">Contact</a>
             <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
@@ -261,54 +216,17 @@
     </p>
 </section>
 
-<!-- NEW: MISSION & VISION -->
-<section id="mission" class="mission-vision">
-    <h2>Our Mission & Vision</h2>
-    <div style="max-width:900px; margin:0 auto 60px; text-align:center;">
-        <h3>Our Mission</h3>
-        <p>To empower people with the skills, confidence and clarity they need to succeed, while helping organisations build agile, high-performing teams that grow, evolve and lead with purpose.</p>
-    </div>
-    <div style="max-width:900px; margin:0 auto 60px; text-align:center;">
-        <h3>Our Vision</h3>
-        <p>To be a leading force in people development and workforce transformation across the globe – shaping future leaders, strengthening businesses and building a workforce that is prepared, capable, connected and future-fit.</p>
-    </div>
-</section>
-
-<!-- UPDATED & EXPANDED SERVICES SECTION -->
 <section id="services">
-    <h2>Our Core Consulting Services</h2>
-    <p style="text-align:center; max-width:900px; margin:0 auto 40px;">
-        High-Impact People & Workforce Development Solutions<br>
-        At Teamo Consulting, we partner with organisations to create real change — the kind that builds capability, confidence, and measurable business value.
-    </p>
+    <h2>Our Core Services</h2>
     <div class="grid">
         <div class="card"><i class="fas fa-user-tie"></i><h3>Coaching & Mentorship</h3><p>Building clarity, confidence and consistent high performance.</p></div>
-        <div class="card"><i class="fas fa-cogs"></i><h3>Succession Planning</h3><p>Identifying, grooming and preparing future leaders to ensure organisational continuity.</p></div>
         <div class="card"><i class="fas fa-briefcase"></i><h3>HR Strategy Development</h3><p>Designing agile, people-first strategies that strengthen culture and performance.</p></div>
-        <div class="card"><i class="fas fa-search"></i><h3>Training Needs Analysis</h3><p>Pinpointing skills gaps and designing targeted, high-impact interventions.</p></div>
-        <div class="card"><i class="fas fa-chart-line"></i><h3>Leadership Development</h3><p>Equipping leaders with modern, practical tools for influence, collaboration and team engagement.</p></div>
-        <div class="card"><i class="fas fa-graduation-cap"></i><h3>Career Guidance & Work Readiness</h3><p>Supporting youth and job seekers to enter the workplace prepared, polished and professional.</p></div>
-        <div class="card"><i class="fas fa-exchange-alt"></i><h3>Change Management</h3><p>Guiding teams through shifts with clarity, alignment and minimal resistance.</p></div>
-        <div class="card"><i class="fas fa-users"></i><h3>Diversity, Inclusion & Belonging</h3><p>Strengthening collaboration, empathy, and teamwork across cultures, generations and backgrounds.</p></div>
-        <div class="card"><i class="fas fa-chart-bar"></i><h3>HR & Workforce Analytics</h3><p>Turning data into insights, and insights into strategic action.</p></div>
-        <div class="card"><i class="fas fa-headset"></i><h3>Customer Service & Behaviour Training</h3><p>Enhancing emotional intelligence, service culture, and customer experience.</p></div>
-        <div class="card"><i class="fas fa-user-plus"></i><h3>Recruitment Strategy & Talent Attraction</h3><p>Helping organisations design hiring processes that attract and retain the right talent.</p></div>
-        <div class="card"><i class="fas fa-comment-dots"></i><h3>Communication Mastery</h3><p>Improving communication, confidence, presentation and interpersonal effectiveness.</p></div>
-        <div class="card"><i class="fas fa-file-alt"></i><h3>CV Writing & Interview Coaching</h3><p>Empowering job seekers to communicate their value and win opportunities.</p></div>
-    </div>
-
-    <div style="max-width:900px; margin:60px auto 0; text-align:center;">
-        <h3>Specialised Expertise: Internships, Learnerships & Talent Pipelines</h3>
-        <p>Teamo Consulting provides end-to-end programme design, implementation and management, including:</p>
-        <ul style="list-style:none; padding:0; max-width:600px; margin:30px auto; text-align:left;">
-            <li>✔ Full programme setup & onboarding</li>
-            <li>✔ Training schedules & compliance</li>
-            <li>✔ Stakeholder coordination</li>
-            <li>✔ Work readiness preparation</li>
-            <li>✔ Coaching, mentoring & performance tracking</li>
-            <li>✔ Talent identification & retention strategies</li>
-        </ul>
-        <p>We build structured pathways that organisations trust and young professionals thrive in.</p>
+        <div class="card"><i class="fas fa-users-cog"></i><h3>Succession Planning</h3><p>Identifying, grooming and preparing future leaders.</p></div>
+        <div class="card"><i class="fas fa-chart-line"></i><h3>Leadership Development</h3><p>Equipping leaders with modern tools for influence and engagement.</p></div>
+        <div class="card"><i class="fas fa-graduation-cap"></i><h3>Career Guidance & Work Readiness</h3><p>Supporting youth to enter the workplace prepared and professional.</p></div>
+        <div class="card"><i class="fas fa-exchange-alt"></i><h3>Change Management</h3><p>Guiding teams through shifts with clarity and alignment.</p></div>
+        <div class="card"><i class="fas fa-users"></i><h3>Diversity, Inclusion & Belonging</h3><p>Strengthening collaboration across cultures and generations.</p></div>
+        <div class="card"><i class="fas fa-headset"></i><h3>Customer Service Training</h3><p>Enhancing emotional intelligence and service culture.</p></div>
     </div>
 </section>
 
@@ -333,44 +251,6 @@
             <h3>Talent Pipeline Development</h3>
             <p>Structured pathways for sustainable growth.</p>
         </div>
-    </div>
-</section>
-
-<!-- NEW: WHY CHOOSE TEAMO -->
-<section id="why" class="why-choose">
-    <h2>Why Organisations Choose Teamo Consulting</h2>
-    <p style="text-align:center; max-width:900px; margin:0 auto 40px;">
-        Clients choose Teamo Consulting and Ms Nene because of her rare blend of humanity, strategy, passion and professionalism. She brings warmth to corporate challenges and structure to people development.
-    </p>
-    <div class="highlight-list">
-        <ul>
-            <li><strong>Stronger, more engaged teams</strong></li>
-            <li><strong>Lower turnover & improved retention</strong></li>
-            <li><strong>Future leaders identified and groomed</strong></li>
-            <li><strong>Workforce pipelines that sustain growth</strong></li>
-            <li><strong>Improved service culture</strong></li>
-            <li><strong>Youth prepared for real work environments</strong></li>
-            <li><strong>Confident communication & collaboration</strong></li>
-            <li><strong>Modern skills that meet future-of-work demands</strong></li>
-        </ul>
-    </div>
-    <p style="text-align:center; font-style:italic; margin-top:40px;">
-        Teamo Consulting doesn’t just train — we transform, elevate and prepare organisations for the future.
-    </p>
-</section>
-
-<!-- NEW: BRAND PROMISE & MOTTO -->
-<section id="promise" class="brand-promise">
-    <h2>Our Brand Promise</h2>
-    <p style="text-align:center; max-width:900px; margin:0 auto 40px;">
-        We develop people who are employable, confident, future-ready and impactful, while supporting organisations to build strong, sustainable talent pipelines.
-    </p>
-
-    <h3 style="text-align:center; margin:60px 0 30px;">Our Motto: Grow. Evolve. Lead.</h3>
-    <div style="max-width:900px; margin:0 auto; text-align:center;">
-        <p><strong>Grow.</strong><br>Strengthen your foundation. Build your confidence. Unlock your potential.</p>
-        <p style="margin:30px 0;"><strong>Evolve.</strong><br>Transform your mindset. Elevate your skills. Embrace the future.</p>
-        <p><strong>Lead.</strong><br>Step into excellence. Influence others. Shape the world.</p>
     </div>
 </section>
 
@@ -440,63 +320,8 @@
             </a>
         </div>
     </div>
-
     <div style="text-align:center; margin-top:40px;">
         <a href="https://wa.me/27738884764?text=Hi%20Teamo%20Consulting!%20I'd%20like%20to%20book%20a%20consultation." class="btn">Book a Free Consultation</a>
-    </div>
-
-    <!-- Booking Form Container -->
-    <div class="booking-form-container">
-        <h3 style="text-align:center; margin-bottom: 30px;">Request Your Free Consultation</h3>
-
-        <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
-            <input type="hidden" name="_subject" value="New Consultation Booking - Teamo Consulting">
-
-            <div class="form-group">
-                <label for="fullname">Full Name *</label>
-                <input type="text" id="fullname" name="name" placeholder="Your full name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="emailaddr">Email Address *</label>
-                <input type="email" id="emailaddr" name="email" placeholder="your.email@example.com" required>
-            </div>
-
-            <div class="form-group">
-                <label for="phonenum">Phone Number *</label>
-                <input type="tel" id="phonenum" name="phone" placeholder="073 888 4764" required>
-            </div>
-
-            <div class="form-group">
-                <label for="service">Preferred Service *</label>
-                <select id="service" name="service" required>
-                    <option value="">Select service...</option>
-                    <option value="Coaching & Mentorship">Coaching & Mentorship</option>
-                    <option value="Leadership Development">Leadership Development</option>
-                    <option value="Work Readiness Training">Work Readiness Training</option>
-                    <option value="Internship & Learnership Management">Internship & Learnership Management</option>
-                    <option value="HR Strategy Development">HR Strategy Development</option>
-                    <option value="Succession Planning">Succession Planning</option>
-                    <option value="Change Management">Change Management</option>
-                    <option value="Diversity, Inclusion & Belonging">Diversity, Inclusion & Belonging</option>
-                    <option value="Other">Other (specify in message)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="datetime">Preferred Date & Time *</label>
-                <input type="datetime-local" id="datetime" name="preferred_datetime" required>
-            </div>
-
-            <div class="form-group">
-                <label for="message">Additional Message / Questions</label>
-                <textarea id="message" name="message" rows="4" placeholder="Tell us more about your goals..."></textarea>
-            </div>
-
-            <div style="text-align:center; margin-top: 30px;">
-                <button type="submit">Submit Booking Request</button>
-            </div>
-        </form>
     </div>
 </section>
 
