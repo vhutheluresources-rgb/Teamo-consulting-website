@@ -584,6 +584,13 @@
 </footer>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('b_date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+    });
     // Dark/Light Mode Toggle
     function toggleTheme() {
         const body = document.body;
@@ -684,22 +691,46 @@
         const dateInput = document.getElementById('b_date');
         const timeSelect = document.getElementById('b_time');
         const notice = document.getElementById('bookingNotice');
+        const submitButton = document.querySelector('#booking-form button[type="submit"]'); // adjust selector if needed
 
+        // Reset everything first
         timeSelect.innerHTML = '';
         notice.style.display = 'none';
+        notice.textContent = '';
+        notice.className = ''; // remove error class if you added it
+        if (submitButton) submitButton.disabled = false;
 
-        if (!dateInput.value) return;
-
-        const selectedDate = new Date(dateInput.value);
-        const day = selectedDate.getDay();
-
-        if (day === 0 || day === 6) {
-            timeSelect.innerHTML = '<option value="">No slots available on weekends</option>';
-            notice.style.display = 'block';
-            notice.style.color = '#b45309';
-            notice.textContent = 'Weekend selected. Please select from Monday to Friday';
+        if (!dateInput.value) {
+            timeSelect.innerHTML = '<option value="">Select a date first</option>';
             return;
         }
+
+        const selectedDate = new Date(dateInput.value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        // ────────────────────────────────────────────────
+        // Check for past date
+        // ────────────────────────────────────────────────
+        if (selectedDate < today) {
+            showErrorNotice(notice, 'This date has already passed. Please choose a future date.');
+            timeSelect.innerHTML = '<option value="">Invalid date selected</option>';
+            if (submitButton) submitButton.disabled = true;
+            return;
+        }
+
+        // ────────────────────────────────────────────────
+        // Check for weekend
+        // ────────────────────────────────────────────────
+        const day = selectedDate.getDay();
+        if (day === 0 || day === 6) {
+            showErrorNotice(notice, 'We are closed on weekends. Please select a weekday (Monday–Friday).');
+            timeSelect.innerHTML = '<option value="">Weekend not available</option>';
+            if (submitButton) submitButton.disabled = true;
+            return;
+        }
+
+        // Valid date → show available times
         timeSelect.innerHTML = '<option value="">Select a time slot</option>';
         workingSlots.forEach(slot => {
             const option = document.createElement('option');
@@ -707,6 +738,9 @@
             option.textContent = slot;
             timeSelect.appendChild(option);
         });
+
+        // Optional: re-enable button if needed
+        if (submitButton) submitButton.disabled = false;
     }
     function closeMenu() {
         document.getElementById('navLinks').classList.remove('active');
@@ -724,30 +758,65 @@
         const message = b_message.value.trim();
         const notice = document.getElementById('bookingNotice');
 
+        // Reset notice
+        notice.style.display = 'none';
+        notice.textContent = '';
+
+        // ────────────────────────────────────────────────
+        // NEW: Validate date is not in the past and not weekend
+        // ────────────────────────────────────────────────
+        if (!dateValue) {
+            notice.style.display = 'block';
+            notice.style.color = '#ef4444';
+            notice.textContent = 'Please select a date.';
+            return;
+        }
+
         const selectedDate = new Date(dateValue);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Normalize to start of today
+
+        // Check if date is in the past
+        if (selectedDate < today) {
+            notice.style.display = 'block';
+            notice.style.color = '#ef4444';
+            notice.textContent = 'The selected date has already passed. Please choose a future date.';
+            return;
+        }
+
+        // Check if weekend (Sunday = 0, Saturday = 6)
         const day = selectedDate.getDay();
+        if (day === 0 || day === 6) {
+            notice.style.display = 'block';
+            notice.style.color = '#ef4444';
+            notice.textContent = 'We are closed on weekends. Please select a weekday (Monday–Friday).';
+            return;
+        }
 
-        let responseNote = '';
+        // ────────────────────────────────────────────────
+        // Existing after-hours check (optional – kept as is)
+        // ────────────────────────────────────────────────
         let isAfterHours = false;
-
         if (timeValue) {
             const [h, m] = timeValue.split(':').map(Number);
             isAfterHours = h > 16 || (h === 16 && m > 30);
         }
 
-        if (day === 0 || day === 6 || isAfterHours || !timeValue) {
-            responseNote =
-                'Your request has been received. Please note that this booking falls outside our working hours. We will get back to you during the next working day.';
-            notice.style.color = '#b45309';
+        let responseNote = '';
+        let noticeColor = '#0d9488'; // default green
+
+        if (isAfterHours || !timeValue) {
+            responseNote = 'Your request has been received. Please note that this booking falls outside our working hours. We will get back to you during the next working day.';
+            noticeColor = '#b45309'; // amber/orange
         } else {
-            responseNote =
-                'Your booking request has been received. We will contact you shortly to confirm. Thank you for reaching out to Teamo Consulting!';
-            notice.style.color = '#0d9488';
+            responseNote = 'Your booking request has been received. We will contact you shortly to confirm. Thank you for reaching out to Teamo Consulting!';
         }
 
         notice.style.display = 'block';
+        notice.style.color = noticeColor;
         notice.textContent = responseNote;
 
+        // Proceed to WhatsApp only if we didn't return early
         const whatsappMessage = encodeURIComponent(
             `📌 *New Consultation Booking*
 
@@ -763,19 +832,12 @@
 ${message}
 `
         );
+
         window.open(
             `https://wa.me/27738884764?text=${whatsappMessage}`,
             '_blank'
         );
     }
-    // Close mobile menu on outside click
-    document.addEventListener('click', function(event) {
-        const navLinks = document.getElementById('navLinks');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        if (navLinks.classList.contains('active') && !navLinks.contains(event.target) && !mobileMenu.contains(event.target)) {
-            closeMenu();
-        }
-    });
     function showCustomAlert(message, type = 'success') {
         // Remove any existing alert
         const existing = document.getElementById('custom-alert');
@@ -814,9 +876,18 @@ ${message}
         // Auto-remove after 4 seconds
         setTimeout(() => {
             alertDiv.style.opacity = '0';
-            alertDiv.style.transform = 'translate(-50%, -20px)';
+            alertDiv.style.transform = 'translate(-50F%, -20px)';
             setTimeout(() => alertDiv.remove(), 400);
         }, 4000);
+    }
+    function showErrorNotice(noticeElement, message) {
+        noticeElement.style.display = 'block';
+        noticeElement.style.color = '#ef4444';
+        noticeElement.style.background = 'rgba(239, 68, 68, 0.1)';
+        noticeElement.style.padding = '12px';
+        noticeElement.style.borderRadius = '8px';
+        noticeElement.style.margin = '12px 0';
+        noticeElement.textContent = message;
     }
 </script>
 </body>
