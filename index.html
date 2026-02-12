@@ -72,7 +72,53 @@
             padding:0 20px;
 
         }
+        .whatsapp-float-pro {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            z-index: 9999;
+            transition: all 0.3s ease;
+            animation: whatsappPulse 2s infinite;
+        }
 
+        .whatsapp-float-pro:hover {
+            transform: scale(1.12);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+            background: #1ebe5d;
+        }
+
+        @keyframes whatsappPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Mobile optimisation */
+        @media (max-width: 768px) {
+            .whatsapp-float-pro {
+                width: 55px;
+                height: 55px;
+                font-size: 26px;
+                right: 18px;
+                bottom: 18px;
+            }
+        }
         .hero h1 { font-size:4.5rem; margin-bottom:20px; }
         .hero .tagline { font-size:2rem; font-weight:600; color:var(--blue); margin:20px 0; }
         .hero p { max-width:900px; font-size:1.3rem; margin:25px auto; }
@@ -93,6 +139,112 @@
             font-family: 'Inter', sans-serif; /* change font style if you want */
             font-size: 1.5rem; /* adjust size as needed */
             margin-bottom: 15px;
+        }
+        .hero {
+            background-position: center center;
+            background-size: cover;
+            background-attachment: scroll;
+        }
+        @media (max-width: 768px) {
+
+            header {
+                padding: 10px 0;
+            }
+
+            .logo-img {
+                height: 60px;
+                width: auto;
+            }
+
+            .mobile-menu {
+                display: block;
+                font-size: 2rem;
+                padding: 10px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                padding-top: 100px;
+                gap: 25px;
+                transition: right 0.4s ease;
+                z-index: 2000;
+            }
+
+            [data-theme="dark"] .nav-links {
+                background: #121212;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 12px;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 120px 20px 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 14px 30px;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 280px;
+                margin: 10px auto;
+                display: block;
+            }
+        }
+        @media (max-width: 768px) {
+            section {
+                padding: 70px 20px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .grid {
+                gap: 25px;
+            }
+
+            .card {
+                padding: 30px 25px;
+            }
+
+            .card i {
+                font-size: 2.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 55px;
+                height: 55px;
+                font-size: 28px;
+            }
         }
 
         .testimonials, .contact {
@@ -183,6 +335,13 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
 
+        /* Hide close button on desktop */
+        @media (min-width: 769px) {
+            .close-menu {
+                display: none;
+            }
+        }
+
     </style>
 </head>
 <body data-theme="light">
@@ -191,11 +350,12 @@
     <nav>
         <img src="teamo%20trans%20logo.png" alt="Teamo Consulting Logo" class="logo-img">
         <div class="nav-links" id="navLinks">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" onclick="closeMenu()">Home</a>
+            <a href="#about" onclick="closeMenu()">About</a>
+            <a href="#services" onclick="closeMenu()">Services</a>
+            <a href="#testimonials" onclick="closeMenu()">Testimonials</a>
+            <a href="#contact" onclick="closeMenu()">Contact</a>
+
             <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
                 <i class="fas fa-sun" id="sunIcon"></i>
                 <i class="fas fa-moon" id="moonIcon" style="display:none;"></i>
@@ -410,6 +570,12 @@
         </div>
     </form>
 </div>
+<a href="https://wa.me/27633130468?text=Hello%20Teamo%20Consulting%2C%20I%20would%20like%20to%20book%20a%20consultation.%20Please%20assist%20me%20with%20the%20next%20steps."
+   class="whatsapp-float-pro"
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 
 <footer>
@@ -447,18 +613,42 @@
         const title = document.getElementById('title').value.trim();
         const company = document.getElementById('company').value.trim();
         const message = document.getElementById('message').value.trim();
-        if (!name || !title || !company || !message) return alert('Please fill in all fields');
-        const testimonial = { name, title, company, message, rating: currentRating, date: new Date().toLocaleDateString('en-ZA') };
+
+        if (!name || !title || !company || !message) {
+            showCustomAlert('Please fill in all fields', 'error');
+            return;
+        }
+
+        const testimonial = {
+            name,
+            title,
+            company,
+            message,
+            rating: currentRating,
+            date: new Date().toLocaleDateString('en-ZA')
+        };
+
         let list = JSON.parse(localStorage.getItem('teamo_testimonials') || '[]');
         list.unshift(testimonial);
         localStorage.setItem('teamo_testimonials', JSON.stringify(list));
+
         renderTestimonials();
+
+        // Clear form
         document.getElementById('name').value = '';
         document.getElementById('title').value = '';
         document.getElementById('company').value = '';
         document.getElementById('message').value = '';
         setRating(5);
-        alert('Thank you! Your testimonial is now live!');
+
+        // Custom thank you message
+        let thankYouMsg = 'Thank you! Your testimonial is now live!';
+
+        if (currentRating === 5) {
+            thankYouMsg = 'Thank you so much for your amazing feedback!';
+        }
+
+        showCustomAlert(thankYouMsg, 'success');
     }
     function renderTestimonials() {
         const container = document.getElementById('testimonialsList');
@@ -510,7 +700,6 @@
             notice.textContent = 'Weekend selected. Please select from Monday to Friday';
             return;
         }
-
         timeSelect.innerHTML = '<option value="">Select a time slot</option>';
         workingSlots.forEach(slot => {
             const option = document.createElement('option');
@@ -518,6 +707,9 @@
             option.textContent = slot;
             timeSelect.appendChild(option);
         });
+    }
+    function closeMenu() {
+        document.getElementById('navLinks').classList.remove('active');
     }
 
     function sendBooking(e) {
@@ -569,17 +761,63 @@
 ────────────────────
 *Message:*
 ${message}
-
-*Note:*
-${responseNote}`
+`
         );
-
         window.open(
             `https://wa.me/27738884764?text=${whatsappMessage}`,
             '_blank'
         );
     }
-</script>
+    // Close mobile menu on outside click
+    document.addEventListener('click', function(event) {
+        const navLinks = document.getElementById('navLinks');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        if (navLinks.classList.contains('active') && !navLinks.contains(event.target) && !mobileMenu.contains(event.target)) {
+            closeMenu();
+        }
+    });
+    function showCustomAlert(message, type = 'success') {
+        // Remove any existing alert
+        const existing = document.getElementById('custom-alert');
+        if (existing) existing.remove();
 
+        const alertDiv = document.createElement('div');
+        alertDiv.id = 'custom-alert';
+        alertDiv.style.position = 'fixed';
+        alertDiv.style.top = '20px';
+        alertDiv.style.left = '50%';
+        alertDiv.style.transform = 'translateX(-50%)';
+        alertDiv.style.padding = '16px 32px';
+        alertDiv.style.borderRadius = '12px';
+        alertDiv.style.color = 'white';
+        alertDiv.style.fontWeight = '500';
+        alertDiv.style.zIndex = '9999';
+        alertDiv.style.boxShadow = '0 8px 30px rgba(0,0,0,0.25)';
+        alertDiv.style.minWidth = '300px';
+        alertDiv.style.textAlign = 'center';
+        alertDiv.style.opacity = '0';
+        alertDiv.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+        // Green for success, red/orange for error
+        alertDiv.style.background = type === 'success' ? '#10b981' : '#ef4444';
+
+        alertDiv.textContent = message;
+
+        document.body.appendChild(alertDiv);
+
+        // Fade in
+        setTimeout(() => {
+            alertDiv.style.opacity = '1';
+            alertDiv.style.transform = 'translate(-50%, 0)';
+        }, 100);
+
+        // Auto-remove after 4 seconds
+        setTimeout(() => {
+            alertDiv.style.opacity = '0';
+            alertDiv.style.transform = 'translate(-50%, -20px)';
+            setTimeout(() => alertDiv.remove(), 400);
+        }, 4000);
+    }
+</script>
 </body>
 </html>
