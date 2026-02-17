@@ -62,7 +62,7 @@
         .hero {
             height:100vh;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)),
-            url('background.jpg') center/cover no-repeat;
+            url('newBG.png') center/cover no-repeat;
             display:flex;
             flex-direction:column;
             justify-content:center;
@@ -152,8 +152,25 @@
             }
 
             .logo-img {
-                height: 60px;
+                height: 120px;              /* Bigger logo */
                 width: auto;
+                filter:
+                        drop-shadow(0 4px 6px rgba(0,0,0,0.35))
+                        brightness(1.15)
+                        contrast(1.15);
+                transition: all 0.3s ease;
+            }
+
+            [data-theme="dark"] .logo-img {
+                filter:
+                        drop-shadow(0 4px 8px rgba(0,0,0,0.8))
+                        brightness(1.25)
+                        contrast(1.2);
+            }
+            @media (max-width: 768px) {
+                .logo-img {
+                    height: 75px;
+                }
             }
 
             .mobile-menu {
@@ -341,6 +358,45 @@
                 display: none;
             }
         }
+        .service-card {
+            position: relative;
+        }
+
+        /* Default (Light Mode) */
+        .service-detail {
+            display: none;
+            margin-top: 15px;
+            background: #ffffff;
+            color: #333333;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] .service-detail {
+            background: #1e1e1e;
+            color: #e0e0e0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        /* Show on hover / tap */
+        .service-card:hover .service-detail,
+        .service-card:focus-within .service-detail {
+            display: block;
+        }
+
+
+        /* Mobile-friendly (tap shows content) */
+        @media (max-width: 768px) {
+            .service-card:active .service-detail {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+        }
 
     </style>
 </head>
@@ -396,8 +452,8 @@
         With expertise in talent development, mentoring, coaching, organisational culture, behavioural training, customer experience, and youth preparedness, we prepare young professionals for modern workspaces and support organisations in creating agile, high-performing teams.
     </p>
 
-    <p style="text-align:center; max-width:900px; margin:0 auto 60px; font-style:italic;">
-        Our purpose is to develop skilled, confident, employable individuals and to help organisations grow — because when people grow, organisations evolve and leaders emerge.
+    <p style="text-align:center; max-width:900px; margin:0 auto 60px;">
+        Managing Director<b> Ms Sinenhlanhla Nene </b>explains our purpose: “<i>Our purpose is to develop skilled, confident, employable individuals and to help organisations grow — because when people grow, organisations evolve and leaders emerge.</i>”
     </p>
 
     <div class="grid">
@@ -410,17 +466,71 @@
 <section id="services">
     <h2>Our Core Services</h2>
     <div class="grid">
-        <div class="card"><i class="fas fa-user-tie"></i><h3>Coaching & Mentorship</h3><p>Building clarity, confidence and consistent high performance.</p></div>
-        <div class="card"><i class="fas fa-briefcase"></i><h3>HR Strategy Development</h3><p>Designing agile, people-first strategies that strengthen culture and performance.</p></div>
-        <div class="card"><i class="fas fa-users-cog"></i><h3>Succession Planning</h3><p>Identifying, grooming and preparing future leaders.</p></div>
-        <div class="card"><i class="fas fa-chart-line"></i><h3>Leadership Development</h3><p>Equipping leaders with modern tools for influence and engagement.</p></div>
-        <div class="card"><i class="fas fa-graduation-cap"></i><h3>Career Guidance & Work Readiness</h3><p>Supporting youth to enter the workplace prepared and professional.</p></div>
-        <div class="card"><i class="fas fa-exchange-alt"></i><h3>Change Management</h3><p>Guiding teams through shifts with clarity and alignment.</p></div>
-        <div class="card"><i class="fas fa-users"></i><h3>Diversity, Inclusion & Belonging</h3><p>Strengthening collaboration across cultures and generations.</p></div>
-        <div class="card"><i class="fas fa-headset"></i><h3>Customer Service Training</h3><p>Enhancing emotional intelligence and service culture.</p></div>
-        <div class="card"><i class="fas fa-file-alt"></i><h3>CV Writing & Interview Coaching</h3><p>Helping candidates craft strong CVs and ace interviews.</p></div>
-    </div>
 
+        <div class="card service-card">
+            <i class="fas fa-user-tie"></i>
+            <h3>Mentoring & Coaching</h3>
+            <p>Building clarity, confidence and consistent high performance.</p>
+            <div class="service-detail">
+                Personalised mentoring and coaching designed to unlock confidence, sharpen leadership capability, and improve performance. We work closely with individuals and teams to build clarity, accountability, and resilience, ensuring sustainable growth that translates into measurable workplace results.
+            </div>
+        </div>
+
+        <div class="card service-card">
+            <i class="fas fa-users-cog"></i>
+            <h3>Succession Planning & HR Strategy</h3>
+            <p>Strengthening leadership pipelines and HR alignment.</p>
+            <div class="service-detail">
+                Strategic workforce planning that strengthens organisational continuity and performance. We help businesses identify future leaders, align HR practices with business goals, and build structured talent pipelines that support long-term growth and stability.
+            </div>
+        </div>
+
+        <div class="card service-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Internship & Learnership Programmes</h3>
+            <p>Developing future-ready talent.</p>
+            <div class="service-detail">
+                End-to-end design and management of structured internship and learnership programmes. From compliance and onboarding to coaching and performance tracking, we prepare youth and new entrants to integrate confidently into the workplace while supporting sustainable talent pipelines.
+            </div>
+        </div>
+
+        <div class="card service-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>HR & Workforce Analytics</h3>
+            <p>Data-driven people decisions.</p>
+            <div class="service-detail">
+                Turning workforce data into practical, results-driven strategies. We analyse trends, performance metrics, and talent insights to support informed decision-making, improve productivity, reduce turnover, and strengthen organisational effectiveness.
+            </div>
+        </div>
+
+        <div class="card service-card">
+            <i class="fas fa-briefcase"></i>
+            <h3>Recruitment Strategy & Talent Attraction</h3>
+            <p>Hiring the right talent.</p>
+            <div class="service-detail">
+                Designing effective recruitment frameworks that attract, assess, and retain the right talent. We streamline hiring processes, strengthen employer branding, and reduce costly turnover through structured talent acquisition strategies.
+            </div>
+        </div>
+
+        <div class="card service-card">
+            <i class="fas fa-headset"></i>
+            <h3>Soft Skills & Behavioural Excellence</h3>
+            <p>Developing emotionally intelligent professionals.</p>
+            <div class="service-detail">
+                Developing emotionally intelligent, service-driven professionals equipped with strong communication, conflict management, and interpersonal skills. This programme strengthens customer service excellence, accountability, collaboration, and professional workplace conduct.
+            </div>
+        </div>
+
+        <div class="card service-card">
+            <i class="fas fa-file-alt"></i>
+            <h3>CV Writing & Interview Preparation</h3>
+            <p>Helping candidates stand out.</p>
+            <div class="service-detail">
+                Empowering job seekers to confidently present their value. Through professional CV enhancement and structured interview coaching, we help candidates articulate their strengths, stand out in competitive markets, and secure meaningful opportunities.
+            </div>
+        </div>
+
+    </div>
 </section>
 
 <section class="testimonials" id="testimonials">
@@ -485,21 +595,15 @@
             </a>
         </div>
         <div class="contact-box">
-            <a href="https://x.com/ConsultingTeamo" target="_blank" style="text-decoration:none; color:inherit;">
-                <i class="fab fa-x-twitter contact-icon"></i>
-                <p><strong>Follow on X</strong><br>@ConsultingTeamo</p>
-            </a>
-        </div>
-        <div class="contact-box">
-            <a href="https://www.facebook.com/TeamoConsulting" target="_blank" style="text-decoration:none; color:inherit;">
-                <i class="fab fa-facebook-f contact-icon"></i>
-                <p><strong>Follow on Facebook</strong><br>Teamo Consulting</p>
-            </a>
-        </div>
-        <div class="contact-box">
             <a href="https://www.google.com/maps/search/?api=1&query=Midrand,Gauteng,South+Africa" target="_blank" style="text-decoration:none; color:inherit;">
                 <i class="fas fa-location-dot contact-icon"></i>
                 <p><strong>Location</strong><br>Midrand, Gauteng<br>South Africa</p>
+            </a>
+        </div>
+        <div class="contact-box">
+            <a href="https://www.linkedin.com/company/teamo-consulting/" target="_blank" style="text-decoration:none; color:inherit;">
+                <i class="fab fa-linkedin-in contact-icon"></i>
+                <p><strong>LinkedIn</strong><br>Teamo Consulting</p>
             </a>
         </div>
     </div>
