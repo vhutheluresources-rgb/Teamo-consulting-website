@@ -24,13 +24,13 @@ public class DataInitializer implements CommandLineRunner {
 
         adminRepository.deleteInvalidAdmins();
 
-        if (adminRepository.findByEmail("admin@teamoconsulting.co.za").isEmpty()) {
+        if (adminRepository.findByEmail("info@teamoconsulting.co.za").isEmpty()) {
 
             Admin admin = new Admin();
 
             admin.setFullName("Teamo Admin");
-            admin.setEmail("admin@teamoconsulting.co.za");
-            admin.setPassword(passwordEncoder.encode("Admin@45"));
+            admin.setEmail("info@teamoconsulting.co.za");
+            admin.setPassword(passwordEncoder.encode("Teamo2012#secure"));
             admin.setRole("ADMIN");
 
             adminRepository.save(admin);
