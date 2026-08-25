@@ -36,16 +36,7 @@ function closeMenu() {
     document.getElementById('navLinks').classList.remove('active');
 }
 
-function toggleTheme() {
-    const body = document.body;
-    const current = body.getAttribute('data-theme');
-    const newTheme = current === 'dark' ? 'light' : 'dark';
 
-    body.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-
-    updateThemeIcons(newTheme);
-}
 
 function loadSavedTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -358,6 +349,24 @@ document.addEventListener('click', function (event) {
         navLinks.classList.remove('active');
     }
 });
+// =========================
+// NAVIGATION ACTIVE LINK
+// =========================
+
+const navLinks = document.querySelectorAll(".nav-link");
+
+navLinks.forEach(link => {
+    link.addEventListener("click", function () {
+
+        // Remove active from all links
+        navLinks.forEach(nav => {
+            nav.classList.remove("active");
+        });
+
+        // Add active to clicked link
+        this.classList.add("active");
+    });
+});
 
 window.addEventListener('scroll', function () {
     const navLinks = document.getElementById('navLinks');
@@ -369,3 +378,45 @@ window.addEventListener('scroll', function () {
 function goToLogin() {
     window.location.href = "/login";
 }
+const navLinks = document.querySelectorAll('.nav-links a:not(.login-btn)');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function () {
+        // Remove active from all navigation links
+        navLinks.forEach(nav => nav.classList.remove('active'));
+
+        // Add active to the clicked navigation link
+        this.classList.add('active');
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+
+    const serviceCards = document.querySelectorAll(".service-card");
+
+    serviceCards.forEach(function (card) {
+
+        card.addEventListener("click", function () {
+
+            // Close all other cards
+            serviceCards.forEach(function (otherCard) {
+                if (otherCard !== card) {
+                    otherCard.classList.remove("active");
+                }
+            });
+
+            // Open the clicked card
+            card.classList.toggle("active");
+
+        });
+
+    });
+
+});
+// =========================
+// SERVICES CLICK FUNCTION
+// =========================
+document.querySelectorAll('.service-card').forEach(card => {
+    card.onclick = function () {
+        this.classList.toggle('active');
+    };
+});
